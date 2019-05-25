@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build]
+  publish = "packages/ui/.docz/dist"
+  command = "cd packages/ui && yarn build:docz"
+  
