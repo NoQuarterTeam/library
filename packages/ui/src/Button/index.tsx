@@ -10,7 +10,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant
   color?: Color
   loading?: boolean
-  disabled?: boolean
   full?: boolean
   style?: any
 }
