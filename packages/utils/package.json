@@ -21,6 +21,9 @@
       "git add"
     ]
   },
+  "files": [
+    "dist/**/*"
+  ],
   "publishConfig": {
     "access": "public"
   },
