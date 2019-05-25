@@ -1,17 +1,17 @@
 ---
-name: Checkbox
-route: /checkbox
+name: Switch
+route: /switch
 ---
 
 import { Playground, Props } from "docz"
 import Container from "../docz/Container"
-import { Checkbox } from "./"
+import { Switch } from "./"
 
-# Checkbox
+# Switch
 
 ## Props
 
-<Props of={Checkbox} />
+<Props of={Switch} />
 
 ## Basic usage
 
@@ -20,9 +20,9 @@ import { Checkbox } from "./"
     <Container
       initialState={false}
       children={([state, setState]) => (
-        <Checkbox
+        <Switch
           label="Sick checkbox"
-          value={state}
+          on={state}
           onChange={() => setState(!state)}
         />
       )}

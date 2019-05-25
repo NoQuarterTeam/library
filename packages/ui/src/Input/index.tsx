@@ -15,7 +15,7 @@ export const Input = forwardRef(
     return (
       <StyledContainer>
         {label && <StyledLabel htmlFor={inputProps.id}>{label}</StyledLabel>}
-        <div>
+        <div style={{ position: "relative" }}>
           {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
           <StyledInput
             id={inputProps.id}

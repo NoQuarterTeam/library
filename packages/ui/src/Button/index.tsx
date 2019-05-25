@@ -72,6 +72,7 @@ const getVariantStyles = ({
 
 const StyledButton = styled.button<ButtonProps>`
   text-align: center;
+  border: 0;
   font-size: ${p => p.theme.textM};
   margin: ${p => (p.full ? 0 : p.theme.paddingS)};
   cursor: ${p => (p.disabled ? "default" : "pointer")};
