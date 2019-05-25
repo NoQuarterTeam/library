@@ -3,6 +3,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   extends: [
     "plugin:@typescript-eslint/recommended",
+    "plugin:mdx/recommended",
     "prettier",
     "prettier/@typescript-eslint",
     "react-app",

@@ -1,6 +1,5 @@
-import React, { InputHTMLAttributes, forwardRef, Ref, memo } from "react"
-import styled from "styled-components"
-import { darken } from "polished"
+import React, { InputHTMLAttributes, forwardRef, Ref } from "react"
+import styled, { darken } from "../Theme"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
@@ -8,28 +7,26 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string
 }
 
-export const Input = memo(
-  forwardRef(
-    (
-      { label, prefix = "", ...inputProps }: InputProps,
-      ref: Ref<HTMLInputElement>,
-    ) => {
-      return (
-        <StyledContainer>
-          {label && <StyledLabel htmlFor={inputProps.id}>{label}</StyledLabel>}
-          <div>
-            {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
-            <StyledInput
-              {...inputProps}
-              id={inputProps.id}
-              ref={ref}
-              hasPrefix={!!prefix}
-            />
-          </div>
-        </StyledContainer>
-      )
-    },
-  ),
+export const Input = forwardRef(
+  (
+    { label, prefix = "", ...inputProps }: InputProps,
+    ref: Ref<HTMLInputElement>,
+  ) => {
+    return (
+      <StyledContainer>
+        {label && <StyledLabel htmlFor={inputProps.id}>{label}</StyledLabel>}
+        <div>
+          {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
+          <StyledInput
+            id={inputProps.id}
+            ref={ref}
+            hasPrefix={!!prefix}
+            {...inputProps}
+          />
+        </div>
+      </StyledContainer>
+    )
+  },
 )
 
 const StyledContainer = styled.div`

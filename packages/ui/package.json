@@ -6,6 +6,8 @@
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
+    "start": "docz dev",
+    "build:docz": "docz build",
     "build": "tsc",
     "test": "jest --passWithNoTests",
     "typecheck": "tsc --noEmit",
@@ -19,7 +21,7 @@
       "git add"
     ],
     "*.{ts,tsx}": [
-      "eslint --fix --cache --ext .ts src",
+      "eslint --fix --cache --ext .ts,.tsx src",
       "git add"
     ]
   },
@@ -48,6 +50,8 @@
   "devDependencies": {
     "@types/react": "16.8.18",
     "@types/react-dom": "16.8.4",
-    "@types/styled-components": "4.1.15"
+    "@types/styled-components": "4.1.15",
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0"
   }
 }

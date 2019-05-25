@@ -1,0 +1,22 @@
+---
+name: Button
+route: /button
+---
+
+import { Playground, Props } from "docz"
+import { Button } from "./"
+
+# Button
+
+## Props
+
+<Props of={Button} />
+
+## Basic usage
+
+<Playground>
+  <Button onClick={() => alert("Hello")}>Primary block</Button>
+  <Button color="secondary" onClick={() => alert("Hello")}>
+    Secondary block
+  </Button>
+</Playground>

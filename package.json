@@ -10,13 +10,13 @@
     ]
   },
   "scripts": {
-    "release": "lerna publish",
     "test": "lerna run test",
     "build": "lerna run build",
     "typecheck": "lerna run typecheck",
     "lint": "lerna run lint",
     "pre-commit": "lerna run pre-commit",
-    "ci": "yarn typecheck && yarn lint && yarn test"
+    "ci": "yarn typecheck && yarn lint && yarn test",
+    "release": "lerna publish"
   },
   "husky": {
     "hooks": {
@@ -40,5 +40,8 @@
     "lint-staged": "8.1.6",
     "prettier": "1.17.0",
     "typescript": "3.4.5"
+  },
+  "dependencies": {
+    "eslint-plugin-mdx": "^1.0.1"
   }
 }

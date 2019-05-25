@@ -1,7 +1,7 @@
-import React, { memo, ButtonHTMLAttributes } from "react"
-import styled, { css } from "styled-components"
-import { lighten } from "polished"
+import React, { ButtonHTMLAttributes } from "react"
 import { capitalize } from "@noquarter/utils"
+
+import styled, { css, lighten } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
@@ -15,27 +15,25 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   style?: any
 }
 
-export const Button = memo(
-  ({
-    variant = "block",
-    color = "primary",
-    loading = false,
-    disabled = false,
-    ...props
-  }: ButtonProps) => {
-    return (
-      <StyledButton
-        variant={variant}
-        color={color}
-        loading={loading}
-        disabled={loading || disabled}
-        {...props}
-      >
-        {loading ? "Loading" : props.children}
-      </StyledButton>
-    )
-  },
-)
+export const Button = ({
+  variant = "block",
+  color = "primary",
+  loading = false,
+  disabled = false,
+  ...props
+}: ButtonProps) => {
+  return (
+    <StyledButton
+      variant={variant}
+      color={color}
+      loading={loading}
+      disabled={loading || disabled}
+      {...props}
+    >
+      {loading ? "Loading" : props.children}
+    </StyledButton>
+  )
+}
 
 const blockStyles = (color: string) => css`
   background-color: ${p => p.theme["color" + capitalize(color)]};
@@ -58,8 +56,8 @@ const getVariantStyles = ({
   color = "primary",
   variant = "block",
 }: {
-  color: string
-  variant: string
+  color?: string
+  variant?: string
 }) => {
   switch (variant) {
     case "block":
