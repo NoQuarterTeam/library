@@ -1,0 +1,7 @@
+{
+  "lerna": "3.13.3",
+  "packages": ["packages/*"],
+  "version": "independent",
+  "registry": "https://registry.npmjs.org/",
+  "publishConfig": { "access": "public" }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@noquarter/utils",
+  "version": "1.0.3",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --fix --cache --ext .ts,.tsx src",
+    "prettify": "prettier --write './src/**/*.{ts,tsx}'",
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix --cache --ext .ts src",
+      "git add"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "48e0a2830c2269e5843febed8fbbfc854251178a"
+}
