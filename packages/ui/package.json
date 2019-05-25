@@ -1,6 +1,6 @@
 {
   "name": "@noquarter/ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/NoQuarterCo/library#readme",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "url": "https://github.com/NoQuarterCo/library/issues"
   },
   "dependencies": {
-    "@noquarter/utils": "^1.0.3",
+    "@noquarter/utils": "^1.0.4",
     "polished": "^3.3.2",
     "styled-components": "^4.2.0"
   },
