@@ -1,5 +1,5 @@
 import React from "react"
-import styled, { transparentize } from "../Theme"
+import { styled, transparentize } from "../Theme"
 
 interface CheckboxProps {
   value?: boolean

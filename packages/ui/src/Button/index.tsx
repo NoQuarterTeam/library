@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react"
 import { capitalize } from "../utils"
 
-import styled, { css, lighten } from "../Theme"
+import { styled, css, lighten } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
