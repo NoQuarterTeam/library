@@ -8,27 +8,29 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string
 }
 
-function Input(
-  { label, prefix = "", ...inputProps }: InputProps,
-  ref: Ref<HTMLInputElement>,
-) {
-  return (
-    <StyledContainer>
-      {label && <StyledLabel htmlFor={inputProps.id}>{label}</StyledLabel>}
-      <div>
-        {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
-        <StyledInput
-          {...inputProps}
-          id={inputProps.id}
-          ref={ref}
-          hasPrefix={!!prefix}
-        />
-      </div>
-    </StyledContainer>
-  )
-}
-
-export default memo(forwardRef(Input))
+export const Input = memo(
+  forwardRef(
+    (
+      { label, prefix = "", ...inputProps }: InputProps,
+      ref: Ref<HTMLInputElement>,
+    ) => {
+      return (
+        <StyledContainer>
+          {label && <StyledLabel htmlFor={inputProps.id}>{label}</StyledLabel>}
+          <div>
+            {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
+            <StyledInput
+              {...inputProps}
+              id={inputProps.id}
+              ref={ref}
+              hasPrefix={!!prefix}
+            />
+          </div>
+        </StyledContainer>
+      )
+    },
+  ),
+)
 
 const StyledContainer = styled.div`
   width: 100%;

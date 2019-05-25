@@ -15,27 +15,27 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   style?: any
 }
 
-function Button({
-  variant = "block",
-  color = "primary",
-  loading = false,
-  disabled = false,
-  ...props
-}: ButtonProps) {
-  return (
-    <StyledButton
-      variant={variant}
-      color={color}
-      loading={loading}
-      disabled={loading || disabled}
-      {...props}
-    >
-      {loading ? "Loading" : props.children}
-    </StyledButton>
-  )
-}
-
-export default memo(Button)
+export const Button = memo(
+  ({
+    variant = "block",
+    color = "primary",
+    loading = false,
+    disabled = false,
+    ...props
+  }: ButtonProps) => {
+    return (
+      <StyledButton
+        variant={variant}
+        color={color}
+        loading={loading}
+        disabled={loading || disabled}
+        {...props}
+      >
+        {loading ? "Loading" : props.children}
+      </StyledButton>
+    )
+  },
+)
 
 const blockStyles = (color: string) => css`
   background-color: ${p => p.theme["color" + capitalize(color)]};
