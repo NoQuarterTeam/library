@@ -23,5 +23,5 @@ function ThemeProvider({ theme, children }: ThemeProviderProps) {
     </SCThemeProvider>
   )
 }
-export { ThemeProvider, css, createGlobalStyle, keyframes }
+export { ThemeProvider, ThemeInterface, css, createGlobalStyle, keyframes }
 export default styled
