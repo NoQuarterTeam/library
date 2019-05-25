@@ -16,7 +16,7 @@
     "lint": "lerna run lint",
     "pre-commit": "lerna run pre-commit",
     "ci": "yarn typecheck && yarn lint && yarn test",
-    "release": "lerna publish"
+    "release": "yarn build && lerna publish"
   },
   "husky": {
     "hooks": {
