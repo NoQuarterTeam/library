@@ -13,7 +13,7 @@ const {
 
 interface ThemeProviderProps {
   children: ReactNode
-  theme: ThemeInterface
+  theme?: ThemeInterface
 }
 
 function ThemeProvider({ theme, children }: ThemeProviderProps) {
