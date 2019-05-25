@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes } from "react"
-import { capitalize } from "@noquarter/utils"
+import { capitalize } from "../utils"
 
 import styled, { css, lighten } from "../Theme"
 

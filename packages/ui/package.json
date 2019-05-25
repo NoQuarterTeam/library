@@ -39,7 +39,6 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "@noquarter/utils": "^1.0.5",
     "polished": "^3.3.2",
     "styled-components": "^4.2.0"
   },
