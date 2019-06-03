@@ -6,6 +6,7 @@ export * from "polished"
 const {
   default: styled,
   css,
+  withTheme,
   createGlobalStyle,
   keyframes,
   ThemeProvider: SCThemeProvider,
@@ -26,6 +27,7 @@ function ThemeProvider({ theme, children }: ThemeProviderProps) {
 export {
   styled,
   defaultTheme,
+  withTheme,
   ThemeProvider,
   ThemeInterface,
   css,
