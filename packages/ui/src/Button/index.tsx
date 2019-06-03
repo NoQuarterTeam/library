@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react"
 import { capitalize } from "../utils"
 
-import { styled, css, lighten } from "../Theme"
+import { styled, css, lighten, ThemeInterface } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
@@ -34,39 +34,40 @@ export const Button = ({
   )
 }
 
-const blockStyles = (color: string) => css`
-  background-color: ${p => p.theme["color" + capitalize(color)]};
-  border: 2px solid ${p => p.theme["color" + capitalize(color)]};
+const blockStyles = (color: keyof ThemeInterface) => css`
+  background-color: ${p => p.theme[color]};
+  border: 2px solid ${p => p.theme[color]};
 `
 
-const outlineStyled = (color: string) => css`
+const outlineStyled = (color: keyof ThemeInterface) => css`
   background-color: transparent;
-  border: 2px solid ${p => lighten(0.1, p.theme["color" + capitalize(color)])};
-  color: ${p => p.theme["color" + capitalize(color)]};
+  border: 2px solid ${p => lighten(0.1, p.theme[color] as string)};
+  color: ${p => p.theme[color]};
 `
 
-const textStyles = (color: string) => css`
+const textStyles = (color: keyof ThemeInterface) => css`
   background-color: transparent;
   border: transparent;
-  color: ${p => p.theme["color" + capitalize(color)]};
+  color: ${p => p.theme[color]};
 `
 
 const getVariantStyles = ({
   color = "primary",
   variant = "block",
 }: {
-  color?: string
-  variant?: string
+  color?: Color
+  variant?: Variant
 }) => {
+  const themeColor = ("color" + capitalize(color)) as keyof ThemeInterface
   switch (variant) {
     case "block":
-      return blockStyles(color)
+      return blockStyles(themeColor)
     case "outline":
-      return outlineStyled(color)
+      return outlineStyled(themeColor)
     case "text":
-      return textStyles(color)
+      return textStyles(themeColor)
     default:
-      return blockStyles(color)
+      return blockStyles(themeColor)
   }
 }
 

@@ -25,6 +25,7 @@ function ThemeProvider({ theme, children }: ThemeProviderProps) {
 }
 export {
   styled,
+  defaultTheme,
   ThemeProvider,
   ThemeInterface,
   css,
