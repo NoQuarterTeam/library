@@ -1,17 +1,17 @@
 ---
-name: Switch
-route: /switch
+name: Radio
+route: /radio
 ---
 
 import { Playground, Props } from "docz"
 import Container from "../docz/Container"
-import { Switch } from "./"
+import { Radio } from "./"
 
-# Switch
+# Radio
 
 ## Props
 
-<Props of={Switch} />
+<Props of={Radio} />
 
 ## Basic usage
 
@@ -20,9 +20,9 @@ import { Switch } from "./"
     <Container
       initialState={false}
       children={([state, setState]) => (
-        <Switch
-          label="Sick switch"
-          on={state}
+        <Radio
+          label="Sick radio"
+          checked={state}
           onChange={() => setState(!state)}
         />
       )}
