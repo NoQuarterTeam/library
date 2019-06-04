@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-function useOnClickOutside(ref: any, handler: () => void) {
+export function useOnClickOutside(ref: any, handler: () => void) {
   useEffect(() => {
     const listener = (event: any) => {
       if (!ref || !ref.current || ref.current.contains(event.target)) return
@@ -16,5 +16,3 @@ function useOnClickOutside(ref: any, handler: () => void) {
     }
   }, [ref, handler])
 }
-
-export default useOnClickOutside

@@ -49,5 +49,3 @@ const formReducer = (state: any, action: Action) => {
 export function useForm<T>(values: T) {
   return useReducer(formReducer, { ...initialState, values })
 }
-
-export default useForm
