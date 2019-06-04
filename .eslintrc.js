@@ -18,6 +18,7 @@ module.exports = {
     ecmaVersion: 2018,
   },
   rules: {
+    "@typescript-eslint/array-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/no-explicit-any": "off",

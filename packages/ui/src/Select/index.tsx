@@ -6,12 +6,13 @@ interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string | number
   onChange: (e: any) => void
   label?: string
-  options?: string[]
+  options: Array<{ label: string; value: string } | string>
   style?: any
   labelStyle?: any
 }
 
 export function Select(props: SelectProps) {
+  props.options && props.options.map(a => a)
   return (
     <StyledContainer>
       {props.label && (
@@ -33,11 +34,19 @@ export function Select(props: SelectProps) {
           </option>
           {props.options &&
             props.options.map(option => {
-              return (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              )
+              if (typeof option === "string") {
+                return (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                )
+              } else {
+                return (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                )
+              }
             })}
         </StyledSelect>
         <StyledSelectIcon />
