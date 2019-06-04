@@ -1,7 +1,7 @@
-import React, { memo, InputHTMLAttributes } from "react"
+import React, { InputHTMLAttributes } from "react"
 import { styled, lighten, transparentize } from "../Theme"
 
-function Radio(props: InputHTMLAttributes<HTMLInputElement>) {
+export function Radio(props: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <StyledLabel htmlFor={props.id}>
       <HiddenInput type="radio" {...props} />
@@ -9,8 +9,6 @@ function Radio(props: InputHTMLAttributes<HTMLInputElement>) {
     </StyledLabel>
   )
 }
-
-export default memo(Radio)
 
 const HiddenInput = styled.input`
   opacity: 0;

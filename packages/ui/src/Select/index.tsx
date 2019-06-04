@@ -11,7 +11,7 @@ interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   labelStyle?: any
 }
 
-function Select(props: SelectProps) {
+export function Select(props: SelectProps) {
   return (
     <StyledContainer>
       {props.label && (
@@ -45,8 +45,6 @@ function Select(props: SelectProps) {
     </StyledContainer>
   )
 }
-
-export default Select
 
 const StyledContainer = styled.div`
   width: 100%;
