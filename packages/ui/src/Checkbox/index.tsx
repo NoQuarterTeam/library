@@ -33,7 +33,7 @@ export function Checkbox({ label, value, ...props }: CheckboxProps) {
 const StyledContainer = styled.div`
   position: relative;
   width: 100%;
-  margin: ${p => p.theme.paddingS};
+  padding: ${p => p.theme.paddingS};
 `
 
 const StyledLabel = styled.label`

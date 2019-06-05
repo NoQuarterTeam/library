@@ -5,34 +5,48 @@ import { styled, css, lighten, ThemeInterface } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
+export type Size = "small" | "large"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant
   color?: Color
   loading?: boolean
+  disabled?: boolean
+  size?: Size
   full?: boolean
   style?: any
 }
 
-export const Button = ({
+export function Button({
   variant = "block",
   color = "primary",
+  type = "submit",
+  size = "large",
   loading = false,
   disabled = false,
   ...props
-}: ButtonProps) => {
+}: ButtonProps) {
   return (
-    <StyledButton
-      variant={variant}
-      color={color}
-      loading={loading}
-      disabled={loading || disabled}
-      {...props}
-    >
-      {loading ? "Loading" : props.children}
-    </StyledButton>
+    <StyledContainer full={props.full}>
+      <StyledButton
+        variant={variant}
+        color={color}
+        loading={loading}
+        type={type}
+        size={size}
+        disabled={loading || disabled}
+        {...props}
+      >
+        {loading ? "Loading" : props.children}
+      </StyledButton>
+    </StyledContainer>
   )
 }
+
+const StyledContainer = styled.div<{ full?: boolean }>`
+  padding: ${p => p.theme.paddingS};
+  width: ${p => (!p.full ? "auto" : "100%")};
+`
 
 const blockStyles = (color: keyof ThemeInterface) => css`
   background-color: ${p => p.theme[color]};
@@ -73,16 +87,21 @@ const getVariantStyles = ({
 
 const StyledButton = styled.button<ButtonProps>`
   text-align: center;
-  border: 0;
-  font-size: ${p => p.theme.textM};
-  margin: ${p => (p.full ? 0 : p.theme.paddingS)};
-  cursor: ${p => (p.disabled ? "default" : "pointer")};
-  width: ${p => (!p.full ? "auto" : "100%")};
   color: white;
   letter-spacing: 1px;
+  line-height: 20px;
+  padding: ${p => p.theme.paddingS};
+  transition: 200ms all;
+  font-size: ${p => p.theme.textM};
+  cursor: ${p => (p.disabled ? "default" : "pointer")};
+  width: 100%;
   opacity: ${p => (p.disabled ? 0.5 : 1)};
   border-radius: ${p => p.theme.borderRadius};
-  padding: ${p => `${p.theme.paddingM} ${p.theme.paddingXL}`};
+  ${p => p.theme.flexCenter};
+  padding: ${p =>
+    p.size === "large"
+      ? `${p.theme.paddingM} ${p.theme.paddingXL}`
+      : `${p.theme.paddingS} ${p.theme.paddingL}`};
 
   &:hover {
     opacity: ${p => (p.disabled ? 0.5 : 0.7)};

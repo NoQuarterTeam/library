@@ -31,7 +31,7 @@ export const Input = forwardRef(
 
 const StyledContainer = styled.div`
   width: 100%;
-  margin: ${p => p.theme.paddingS};
+  padding: ${p => p.theme.paddingS};
 `
 
 const StyledLabel = styled.label`
