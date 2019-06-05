@@ -8,6 +8,7 @@ export const defaultTheme: ThemeInterface = {
   colorShadow: "rgba(200, 200, 200, 0.1)",
   colorTertiary: "#afb2cb",
   colorText: "#1b2d41",
+  colorWarning: "#f75757",
   colorTile: "#fff",
   fontBold: 700,
   fontExtraBold: 900,
@@ -49,6 +50,7 @@ export interface ThemeInterface {
   colorShadow: string
   colorTertiary: string
   colorText: string
+  colorWarning: string
   colorTile: string
   fontBold: number
   fontExtraBold: number

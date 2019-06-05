@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes, forwardRef, Ref } from "react"
 import { styled, darken } from "../Theme"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  error?: any
+  error?: boolean
   label?: string
   style?: any
   prefix?: string
@@ -20,7 +20,7 @@ export const Input = forwardRef(
           {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
           <StyledInput
             {...props}
-            hasError={!!props.error}
+            hasError={props.error}
             ref={ref}
             hasPrefix={!!prefix}
           />
@@ -40,7 +40,7 @@ const StyledLabel = styled.label`
   font-size: ${p => p.theme.textS};
 `
 
-const StyledInput = styled.input<{ hasPrefix?: boolean; hasError: boolean }>`
+const StyledInput = styled.input<{ hasPrefix?: boolean; hasError?: boolean }>`
   border: 0;
   width: 100%;
   outline: 0;
@@ -53,8 +53,8 @@ const StyledInput = styled.input<{ hasPrefix?: boolean; hasError: boolean }>`
   padding: ${p => p.theme.paddingM};
   ${p => p.hasPrefix && "padding-left: 16px"};
   ${p => p.type === "date" && "padding-bottom: 7px"};
-  border: 1px solid
-    ${p => (p.hasError ? p.theme.colorPrimary : p.theme.colorBackground)};
+  border: 2px solid
+    ${p => (p.hasError ? p.theme.colorWarning : p.theme.colorBackground)};
   background-color: ${p => p.theme.colorBackground};
 
   &::placeholder {
@@ -62,10 +62,10 @@ const StyledInput = styled.input<{ hasPrefix?: boolean; hasError: boolean }>`
   }
 
   &:focus {
-    border: 1px solid
+    border: 2px solid
       ${p =>
         p.hasError
-          ? p.theme.colorPrimary
+          ? p.theme.colorWarning
           : darken(0.1, p.theme.colorBackground)};
   }
 `

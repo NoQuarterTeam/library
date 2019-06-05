@@ -42,6 +42,7 @@ const StyledRadio = styled.div`
   width: 26px;
   border-radius: 50%;
   border: 2px solid ${p => lighten(0.25, p.theme.colorPrimary)};
+  ${p => p.theme.flexCenter};
 
   &:hover {
     border: 2px solid ${p => p.theme.colorPrimary};
@@ -50,7 +51,6 @@ const StyledRadio = styled.div`
   &::after {
     content: "";
     transition: all 200ms;
-    position: absolute;
     opacity: 0;
     top: 4px;
     left: 4px;
