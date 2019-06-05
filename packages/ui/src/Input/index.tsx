@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes, forwardRef, Ref } from "react"
 import { styled, darken } from "../Theme"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  error?: any
   label?: string
   style?: any
   prefix?: string
@@ -9,19 +10,19 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef(
   (
-    { label, prefix = "", ...inputProps }: InputProps,
+    { label, prefix = "", ...props }: InputProps,
     ref: Ref<HTMLInputElement>,
   ) => {
     return (
       <StyledContainer>
-        {label && <StyledLabel htmlFor={inputProps.id}>{label}</StyledLabel>}
+        {label && <StyledLabel htmlFor={props.id}>{label}</StyledLabel>}
         <div style={{ position: "relative" }}>
           {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
           <StyledInput
-            id={inputProps.id}
+            {...props}
+            hasError={!!props.error}
             ref={ref}
             hasPrefix={!!prefix}
-            {...inputProps}
           />
         </div>
       </StyledContainer>
@@ -39,7 +40,7 @@ const StyledLabel = styled.label`
   font-size: ${p => p.theme.textS};
 `
 
-const StyledInput = styled.input<{ hasPrefix?: boolean }>`
+const StyledInput = styled.input<{ hasPrefix?: boolean; hasError: boolean }>`
   border: 0;
   width: 100%;
   outline: 0;
@@ -52,7 +53,8 @@ const StyledInput = styled.input<{ hasPrefix?: boolean }>`
   padding: ${p => p.theme.paddingM};
   ${p => p.hasPrefix && "padding-left: 16px"};
   ${p => p.type === "date" && "padding-bottom: 7px"};
-  border: 1px solid ${p => p.theme.colorBackground};
+  border: 1px solid
+    ${p => (p.hasError ? p.theme.colorPrimary : p.theme.colorBackground)};
   background-color: ${p => p.theme.colorBackground};
 
   &::placeholder {
@@ -60,7 +62,11 @@ const StyledInput = styled.input<{ hasPrefix?: boolean }>`
   }
 
   &:focus {
-    border: 1px solid ${p => darken(0.1, p.theme.colorBackground)};
+    border: 1px solid
+      ${p =>
+        p.hasError
+          ? p.theme.colorPrimary
+          : darken(0.1, p.theme.colorBackground)};
   }
 `
 
