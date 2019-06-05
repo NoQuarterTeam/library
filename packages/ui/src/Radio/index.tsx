@@ -20,6 +20,7 @@ const HiddenInput = styled.input`
 `
 
 const StyledLabel = styled.label`
+  position: relative;
   user-select: none;
   cursor: pointer;
 
