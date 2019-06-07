@@ -1,12 +1,6 @@
 import { useReducer, Dispatch } from "react"
 
-type ActionType =
-  | "update"
-  | "loading"
-  | "validationError"
-  | "error"
-  | "reset"
-  | "finished"
+type ActionType = "update" | "loading" | "validationError" | "error" | "reset"
 
 type Action = {
   type: ActionType
