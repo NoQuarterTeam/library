@@ -1,8 +1,19 @@
-import { useReducer } from "react"
+import { useReducer, Dispatch } from "react"
 
-export interface Action {
-  type: string
-  [key: string]: any
+type ActionType =
+  | "update"
+  | "loading"
+  | "validationError"
+  | "error"
+  | "reset"
+  | "finished"
+
+type Action = {
+  type: ActionType
+  values?: any
+  field?: { [key: string]: any }
+  error?: string
+  fieldErrors?: { [key: string]: any }
 }
 
 const initialState = {
@@ -11,7 +22,16 @@ const initialState = {
   error: null,
   fieldErrors: null,
 }
-const formReducer = (state: any, action: Action) => {
+
+interface FormState<T> {
+  values: T
+  loading: boolean
+  error: string
+  dirty: boolean
+  fieldErrors: { [key: string]: any }
+}
+
+function formReducer(state: any, action: Action) {
   switch (action.type) {
     case "update":
       return {
@@ -21,12 +41,19 @@ const formReducer = (state: any, action: Action) => {
       }
     case "loading":
       return { ...state, loading: true }
+    case "validationError":
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        fieldErrors: action.fieldErrors,
+      }
     case "error":
       return {
         ...state,
         loading: false,
+        fieldErrors: null,
         error: action.error,
-        fieldErrors: action.fieldErrors,
       }
     case "reset":
       return {
@@ -42,10 +69,10 @@ const formReducer = (state: any, action: Action) => {
         fieldErrors: null,
       }
     default:
-      throw new Error()
+      throw new Error("incorrect type used: " + action.type)
   }
 }
 
-export function useForm<T>(values: T) {
+export function useForm<T>(values: T): [FormState<T>, Dispatch<Action>] {
   return useReducer(formReducer, { ...initialState, values })
 }
