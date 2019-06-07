@@ -57,16 +57,8 @@ function formReducer(state: any, action: Action) {
       }
     case "reset":
       return {
-        values: action.values,
         ...initialState,
-      }
-    case "finished":
-      return {
-        ...state,
-        dirty: false,
-        loading: false,
-        error: null,
-        fieldErrors: null,
+        values: action.values,
       }
     default:
       throw new Error("incorrect type used: " + action.type)
