@@ -2,7 +2,7 @@
   "name": "@noquarter/ui",
   "version": "1.1.9",
   "description": "",
-  "homepage": "https://github.com/NoQuarterCo/library#readme",
+  "homepage": "https://github.com/NoQuarterTeam/library#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
@@ -30,10 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NoQuarterCo/library.git"
+    "url": "git+https://github.com/NoQuarterTeam/library.git"
   },
   "bugs": {
-    "url": "https://github.com/NoQuarterCo/library/issues"
+    "url": "https://github.com/NoQuarterTeam/library/issues"
   },
   "files": [
     "dist/**/*"
