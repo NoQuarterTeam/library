@@ -76,7 +76,7 @@ const outlineStyled = (color: string) => css`
 
 const textStyles = (color: string, disabled: boolean) => css`
   background-color: transparent;
-  border: transparent;
+  border: 2px solid transparent;
   color: ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
 
   &:hover {
