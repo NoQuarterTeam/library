@@ -87,7 +87,7 @@ const StyledSelect = styled.select<{ isEmpty: boolean }>`
   border-radius: ${p => p.theme.borderRadius};
   padding: ${p => p.theme.paddingM};
   padding-right: 30px;
-  border: 1px solid ${p => p.theme.colorBackground};
+  border: 2px solid ${p => p.theme.colorBackground};
   background-color: ${p => p.theme.colorBackground};
 
   &:disabled {
@@ -98,6 +98,6 @@ const StyledSelect = styled.select<{ isEmpty: boolean }>`
   }
 
   &:focus {
-    border: 1px solid ${p => darken(0.1, p.theme.colorBackground)};
+    border: 2px solid ${p => darken(0.1, p.theme.colorBackground)};
   }
 `

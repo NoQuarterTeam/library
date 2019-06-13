@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react"
 import { capitalize } from "../utils"
 
-import { styled, css, lighten, ThemeInterface } from "../Theme"
+import { styled, css, ThemeInterface, darken, transparentize } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
@@ -48,46 +48,67 @@ const StyledContainer = styled.div<{ full?: boolean }>`
   width: ${p => (!p.full ? "auto" : "100%")};
 `
 
-const blockStyles = (color: keyof ThemeInterface) => css`
-  background-color: ${p => p.theme[color]};
-  border: 2px solid ${p => p.theme[color]};
+const blockStyles = (color: string) => css`
+  background-color: ${p =>
+    p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+  border: 2px solid
+    ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+
+  &:focus {
+    border: 2px solid
+      ${p =>
+        darken(0.1, p.theme[
+          ("color" + capitalize(color)) as keyof ThemeInterface
+        ] as string)};
+    background-color: ${p =>
+      darken(0.1, p.theme[
+        ("color" + capitalize(color)) as keyof ThemeInterface
+      ] as string)};
+  }
 `
 
-const outlineStyled = (color: keyof ThemeInterface) => css`
+const outlineStyled = (color: string) => css`
   background-color: transparent;
-  border: 2px solid ${p => lighten(0.1, p.theme[color] as string)};
-  color: ${p => p.theme[color]};
+  border: 2px solid
+    ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+  color: ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
 `
 
-const textStyles = (color: keyof ThemeInterface) => css`
+const textStyles = (color: string, disabled: boolean) => css`
   background-color: transparent;
   border: transparent;
-  color: ${p => p.theme[color]};
+  color: ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+
+  &:hover {
+    ${p =>
+      !disabled &&
+      `background-color: ${transparentize(0.9, p.theme[
+        ("color" + capitalize(color)) as keyof ThemeInterface
+      ] as string)}`};
+  }
 `
 
 const getVariantStyles = ({
   color = "primary",
   variant = "block",
-}: {
-  color?: Color
-  variant?: Variant
-}) => {
-  const themeColor = ("color" + capitalize(color)) as keyof ThemeInterface
+  disabled = false,
+}: ThemeInterface & ButtonProps) => {
   switch (variant) {
     case "block":
-      return blockStyles(themeColor)
+      return blockStyles(color)
     case "outline":
-      return outlineStyled(themeColor)
+      return outlineStyled(color)
     case "text":
-      return textStyles(themeColor)
+      return textStyles(color, disabled)
     default:
-      return blockStyles(themeColor)
+      return blockStyles(color)
   }
 }
 
 const StyledButton = styled.button<ButtonProps>`
   text-align: center;
   color: white;
+  outline: none;
   letter-spacing: 1px;
   line-height: 20px;
   padding: ${p => p.theme.paddingS};
