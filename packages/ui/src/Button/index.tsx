@@ -31,7 +31,6 @@ export function Button({
       <StyledButton
         variant={variant}
         color={color}
-        loading={loading}
         type={type}
         size={size}
         disabled={loading || disabled}
