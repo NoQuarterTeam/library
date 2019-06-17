@@ -39,7 +39,7 @@
     "lerna": "3.15.0",
     "lint-staged": "8.1.7",
     "prettier": "1.17.1",
-    "typescript": "3.5.1"
+    "typescript": "3.5.2"
   },
   "dependencies": {
     "eslint-plugin-mdx": "1.0.1"
