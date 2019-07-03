@@ -14,7 +14,7 @@ const initialState = {
   dirty: false,
   loading: false,
   error: null,
-  fieldErrors: null,
+  fieldErrors: {},
 }
 
 interface FormState<T> {
@@ -46,7 +46,7 @@ function formReducer(state: any, action: Action) {
       return {
         ...state,
         loading: false,
-        fieldErrors: null,
+        fieldErrors: {},
         error: action.error,
       }
     case "reset":
