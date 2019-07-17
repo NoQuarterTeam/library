@@ -1,3 +1,33 @@
+export interface ThemeInterface {
+  boxShadow: string
+  borderRadius: string
+  colorBackground: string
+  colorLabel: string
+  colorPrimary: string
+  colorSecondary: string
+  colorShadow: string
+  colorTertiary: string
+  colorText: string
+  colorWarning: string
+  colorTile: string
+  fontBold: number
+  fontExtraBold: number
+  fontNormal: number
+  paddingL: string
+  paddingM: string
+  paddingS: string
+  paddingXL: string
+  paddingXS: string
+  textL: string
+  textM: string
+  textS: string
+  textXL: string
+  textXS: string
+  flexCenter: string
+  flexBetween: string
+  flexAround: string
+}
+
 export const defaultTheme: ThemeInterface = {
   boxShadow: "10px 10px 20px 0 rgba(100, 100, 100, 0.1)",
   borderRadius: "10px",
@@ -38,34 +68,4 @@ export const defaultTheme: ThemeInterface = {
     align-items: center;
     justify-content: space-around;
   `,
-}
-
-export interface ThemeInterface {
-  boxShadow: string
-  borderRadius: string
-  colorBackground: string
-  colorLabel: string
-  colorPrimary: string
-  colorSecondary: string
-  colorShadow: string
-  colorTertiary: string
-  colorText: string
-  colorWarning: string
-  colorTile: string
-  fontBold: number
-  fontExtraBold: number
-  fontNormal: number
-  paddingL: string
-  paddingM: string
-  paddingS: string
-  paddingXL: string
-  paddingXS: string
-  textL: string
-  textM: string
-  textS: string
-  textXL: string
-  textXS: string
-  flexCenter: string
-  flexBetween: string
-  flexAround: string
 }

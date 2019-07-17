@@ -12,7 +12,6 @@ interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function Select(props: SelectProps) {
-  props.options && props.options.map(a => a)
   return (
     <StyledContainer>
       {props.label && (
@@ -29,8 +28,8 @@ export function Select(props: SelectProps) {
           isEmpty={props.value === -1}
           onChange={props.onChange}
         >
-          <option value={-1} disabled={true}>
-            Select
+          <option disabled={true} value={-1}>
+            {props.placeholder || "Select"}
           </option>
           {props.options &&
             props.options.map(option => {

@@ -5,6 +5,7 @@ route: /select
 
 import { Playground, Props } from "docz"
 import { Select } from "./"
+import Container from "../docz/Container"
 
 # Select
 
@@ -12,6 +13,16 @@ import { Select } from "./"
 
 <Playground>
   <div style={{ width: "50%" }}>
-    <Select label="Email" placeholder="jimbob@gmail.com" />
+    <Container
+      initialState={-1}
+      children={([state, setState]) => (
+        <Select
+          label="Email"
+          value={state}
+          onChange={e => setState(e.target.value)}
+          options={["somit", "cool", "yeah"]}
+        />
+      )}
+    />
   </div>
 </Playground>
