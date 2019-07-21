@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes } from "react"
 import { capitalize } from "../utils"
-import { useOutlineControl } from "@noquarter/hooks"
 
 import { styled, css, ThemeInterface, transparentize } from "../Theme"
 
@@ -27,7 +26,6 @@ export function Button({
   disabled = false,
   ...props
 }: ButtonProps) {
-  useOutlineControl()
   return (
     <StyledContainer full={props.full}>
       <StyledButton

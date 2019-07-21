@@ -29,13 +29,13 @@ export interface ThemeInterface {
 }
 
 export const defaultTheme: ThemeInterface = {
-  boxShadow: "10px 10px 20px 0 rgba(100, 100, 100, 0.1)",
+  boxShadow: "0px 5px 15px 0 rgba(100, 100, 100, 0.1)",
   borderRadius: "10px",
   colorBackground: "#f8f9fd",
   colorLabel: "#b1bbc4",
   colorPrimary: "#F35680",
   colorSecondary: "#0085ff",
-  colorShadow: "rgba(200, 200, 200, 0.1)",
+  colorShadow: "rgba(100, 100, 100, 0.1)",
   colorTertiary: "#afb2cb",
   colorText: "#1b2d41",
   colorWarning: "#F35680",
