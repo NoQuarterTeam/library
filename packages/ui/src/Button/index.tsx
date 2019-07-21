@@ -1,7 +1,8 @@
 import React, { ButtonHTMLAttributes } from "react"
 import { capitalize } from "../utils"
+import { useOutlineControl } from "@noquarter/hooks"
 
-import { styled, css, ThemeInterface, darken, transparentize } from "../Theme"
+import { styled, css, ThemeInterface, transparentize } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
@@ -26,6 +27,7 @@ export function Button({
   disabled = false,
   ...props
 }: ButtonProps) {
+  useOutlineControl()
   return (
     <StyledContainer full={props.full}>
       <StyledButton
@@ -52,18 +54,6 @@ const blockStyles = (color: string) => css`
     p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
   border: 2px solid
     ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
-
-  &:focus {
-    border: 2px solid
-      ${p =>
-        darken(0.1, p.theme[
-          ("color" + capitalize(color)) as keyof ThemeInterface
-        ] as string)};
-    background-color: ${p =>
-      darken(0.1, p.theme[
-        ("color" + capitalize(color)) as keyof ThemeInterface
-      ] as string)};
-  }
 `
 
 const outlineStyled = (color: string) => css`
@@ -107,7 +97,6 @@ const getVariantStyles = ({
 const StyledButton = styled.button<ButtonProps>`
   text-align: center;
   color: white;
-  outline: none;
   letter-spacing: 1px;
   line-height: 20px;
   padding: ${p => p.theme.paddingS};
