@@ -1,4 +1,4 @@
-import React, { ReactNode, Fragment } from "react"
+import React, { Fragment, FC } from "react"
 import * as SC from "styled-components"
 import { ThemeInterface, defaultTheme } from "./defaultTheme"
 export * from "polished"
@@ -11,21 +11,22 @@ const {
   withTheme,
   createGlobalStyle,
   keyframes,
-  ThemeProvider: SCThemeProvider,
 } = SC as SC.ThemedStyledComponentsModule<ThemeInterface>
 
 interface ThemeProviderProps {
-  children: ReactNode
-  theme?: ThemeInterface
+  theme?: Partial<ThemeInterface>
 }
 
-function ThemeProvider({ theme, children }: ThemeProviderProps) {
+const ThemeProvider: FC<ThemeProviderProps> = ({ theme, children }) => {
   return (
-    <SCThemeProvider theme={theme || defaultTheme}>
+    <SC.ThemeProvider
+      theme={theme ? { ...defaultTheme, ...theme } : defaultTheme}
+    >
       <Fragment>{children}</Fragment>
-    </SCThemeProvider>
+    </SC.ThemeProvider>
   )
 }
+
 export {
   createGlobalStyle,
   css,
