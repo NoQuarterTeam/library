@@ -25,4 +25,18 @@ import Container from "../docz/Container"
       )}
     />
   </div>
+  <div style={{ width: "50%" }}>
+    <Container
+      initialState={-1}
+      children={([state, setState]) => (
+        <Select
+          label="Email with error"
+          value={state}
+          error={true}
+          onChange={e => setState(e.target.value)}
+          options={["somit", "cool", "yeah"]}
+        />
+      )}
+    />
+  </div>
 </Playground>

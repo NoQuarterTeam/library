@@ -6,6 +6,7 @@ interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string | number
   onChange: (e: any) => void
   label?: string
+  error?: any
   options: Array<{ label: string; value: string } | string>
   style?: any
   labelStyle?: any
@@ -25,6 +26,7 @@ export function Select(props: SelectProps) {
           id={props.id}
           disabled={props.disabled}
           value={props.value}
+          hasError={!!props.error}
           isEmpty={props.value === -1}
           onChange={props.onChange}
         >
@@ -72,7 +74,7 @@ const StyledSelectIcon = styled(Arrow)`
   right: 12px;
 `
 
-const StyledSelect = styled.select<{ isEmpty: boolean }>`
+const StyledSelect = styled.select<{ isEmpty: boolean; hasError: boolean }>`
   position: relative;
   border: 0;
   width: 100%;
@@ -86,7 +88,8 @@ const StyledSelect = styled.select<{ isEmpty: boolean }>`
   border-radius: ${p => p.theme.borderRadius};
   padding: ${p => p.theme.paddingM};
   padding-right: 30px;
-  border: 2px solid ${p => p.theme.colorBackground};
+  border: 2px solid
+    ${p => (p.hasError ? p.theme.colorPrimary : p.theme.colorBackground)};
   background-color: ${p => p.theme.colorBackground};
 
   &:disabled {
@@ -95,8 +98,11 @@ const StyledSelect = styled.select<{ isEmpty: boolean }>`
   &::placeholder {
     color: ${p => p.theme.colorTertiary};
   }
-
   &:focus {
-    border: 2px solid ${p => darken(0.1, p.theme.colorBackground)};
+    border: 2px solid
+      ${p =>
+        p.hasError
+          ? p.theme.colorPrimary
+          : darken(0.1, p.theme.colorBackground)};
   }
 `
