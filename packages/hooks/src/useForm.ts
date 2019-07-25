@@ -1,14 +1,37 @@
 import { useReducer, Dispatch } from "react"
 
-type ActionType = "update" | "loading" | "validationError" | "error" | "reset"
+type AnyKey = { [key: string]: string }
 
-type Action = {
-  type: ActionType
-  values?: any
-  field?: { [key: string]: any }
-  error?: string
-  fieldErrors?: { [key: string]: any }
+type UpdateAction = {
+  type: "update"
+  field: AnyKey
 }
+
+type LoadingAction = {
+  type: "loading"
+}
+
+type ValidationErrorAction = {
+  type: "validationError"
+  fieldErrors: AnyKey
+}
+
+type ErrorAction = {
+  type: "error"
+  error: string
+}
+
+type ResetAction = {
+  type: "reset"
+  values: AnyKey
+}
+
+type Action =
+  | UpdateAction
+  | LoadingAction
+  | ValidationErrorAction
+  | ErrorAction
+  | ResetAction
 
 const initialState = {
   dirty: false,
@@ -54,8 +77,6 @@ function formReducer(state: any, action: Action) {
         ...initialState,
         values: action.values,
       }
-    default:
-      throw new Error("incorrect type used: " + action.type)
   }
 }
 
