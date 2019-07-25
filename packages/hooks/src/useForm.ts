@@ -1,6 +1,6 @@
 import { useReducer, Dispatch } from "react"
 
-type AnyKey = { [key: string]: string }
+type AnyKey = { [key: string]: any }
 
 type UpdateAction = {
   type: "update"
