@@ -20,6 +20,25 @@ import { Button } from "./"
     Secondary block
   </Button>
 
+<Button color="tertiary" variant="outline" onClick={() => alert("Hello")}>
+  Tertiary outline
+</Button>
+
   <Button variant="outline" onClick={() => alert("Hello")}>Primary outline</Button>
   <Button variant="text" onClick={() => alert("Hello")}>Primary text</Button>
+  <Button color="tertiary" variant="text" onClick={() => alert("Hello")}>Tertiary text</Button>
+</Playground>
+
+## Disabled
+
+<Playground>
+  <Button disabled={true} onClick={() => alert("Hello")}>Primary block</Button>
+  <Button disabled={true} color="secondary" onClick={() => alert("Hello")}>
+    Secondary block
+  </Button>
+
+  <Button disabled={true} variant="outline" onClick={() => alert("Hello")}>Primary outline</Button>
+  <Button disabled={true} variant="text" onClick={() => alert("Hello")}>Primary text</Button>
+  <Button disabled={true} color="tertiary" variant="text" onClick={() => alert("Hello")}>Primary text</Button>
+
 </Playground>

@@ -26,6 +26,7 @@ export interface ThemeInterface {
   flexCenter: string
   flexBetween: string
   flexAround: string
+  [key: string]: any
 }
 
 export const defaultTheme: ThemeInterface = {

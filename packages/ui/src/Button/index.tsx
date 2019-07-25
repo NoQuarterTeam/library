@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes } from "react"
 import { capitalize } from "../utils"
 
-import { styled, css, ThemeInterface, transparentize } from "../Theme"
+import { styled, css, ThemeInterface, transparentize, lighten } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
@@ -47,48 +47,87 @@ const StyledContainer = styled.div<{ full?: boolean }>`
   width: ${p => (!p.full ? "auto" : "100%")};
 `
 
-const blockStyles = (color: string) => css`
-  background-color: ${p =>
-    p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+const blockStyles = ({
+  color = "primary",
+  ...props
+}: ThemeInterface & ButtonProps) => css`
   border: 2px solid
-    ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+    ${p =>
+      props.disabled
+        ? lighten(0.08, p.theme["color" + capitalize(color)])
+        : p.theme["color" + capitalize(color)]};
+
+  background-color: ${p =>
+    props.disabled
+      ? lighten(0.08, p.theme["color" + capitalize(color)])
+      : p.theme["color" + capitalize(color)]};
+
+  &:hover {
+    border: 2px solid
+      ${p => lighten(0.08, p.theme["color" + capitalize(color)])};
+    background-color: ${p =>
+      lighten(0.08, p.theme["color" + capitalize(color)])};
+  }
 `
 
-const outlineStyled = (color: string) => css`
+const outlineStyled = ({
+  color = "primary",
+  ...props
+}: ThemeInterface & ButtonProps) => css`
   background-color: transparent;
   border: 2px solid
-    ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
-  color: ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+    ${p =>
+      props.disabled
+        ? lighten(0.08, p.theme["color" + capitalize(color)])
+        : p.theme["color" + capitalize(color)]};
+
+  color: ${p =>
+    props.disabled
+      ? lighten(0.08, p.theme["color" + capitalize(color)])
+      : p.theme["color" + capitalize(color)]};
+  ${props.disabled && "opacity: 0.9"};
+  &:hover {
+    background-color: ${p =>
+      props.disabled
+        ? "transparent "
+        : transparentize(0.9, p.theme["color" + capitalize(color)])};
+  }
 `
 
-const textStyles = (color: string, disabled: boolean) => css`
+const textStyles = ({
+  color = "primary",
+  ...props
+}: ThemeInterface & ButtonProps) => css`
   background-color: transparent;
   border: 2px solid transparent;
-  color: ${p => p.theme[("color" + capitalize(color)) as keyof ThemeInterface]};
+  color: ${p =>
+    props.disabled
+      ? lighten(0.08, p.theme["color" + capitalize(color)])
+      : p.theme["color" + capitalize(color)]};
 
   &:hover {
     ${p =>
-      !disabled &&
-      `background-color: ${transparentize(0.9, p.theme[
-        ("color" + capitalize(color)) as keyof ThemeInterface
-      ] as string)}`};
+      !props.disabled &&
+      `background-color: ${transparentize(
+        0.9,
+        p.theme["color" + capitalize(color)],
+      )}`};
   }
 `
 
 const getVariantStyles = ({
-  color = "primary",
   variant = "block",
-  disabled = false,
+  ...props
 }: ThemeInterface & ButtonProps) => {
   switch (variant) {
     case "block":
-      return blockStyles(color)
+      return blockStyles({ variant, ...props })
     case "outline":
-      return outlineStyled(color)
+      return outlineStyled({ variant, ...props })
     case "text":
-      return textStyles(color, disabled)
+      return textStyles({ variant, ...props })
     default:
-      return blockStyles(color)
+      return blockStyles({ variant, ...props })
   }
 }
 
@@ -102,17 +141,12 @@ const StyledButton = styled.button<ButtonProps>`
   font-size: ${p => p.theme.textM};
   cursor: ${p => (p.disabled ? "default" : "pointer")};
   width: 100%;
-  opacity: ${p => (p.disabled ? 0.5 : 1)};
   border-radius: ${p => p.theme.borderRadius};
   ${p => p.theme.flexCenter};
   padding: ${p =>
     p.size === "large"
       ? `${p.theme.paddingM} ${p.theme.paddingXL}`
       : `${p.theme.paddingS} ${p.theme.paddingL}`};
-
-  &:hover {
-    opacity: ${p => (p.disabled ? 0.5 : 0.7)};
-  }
 
   ${p => getVariantStyles({ ...p, ...p.theme })}
 `
