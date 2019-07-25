@@ -24,13 +24,14 @@ export function Select(props: SelectProps) {
         <StyledSelect
           style={props.style}
           id={props.id}
+          required={props.required}
           disabled={props.disabled}
           value={props.value}
           hasError={!!props.error}
-          isEmpty={props.value === -1}
+          isEmpty={props.value === ""}
           onChange={props.onChange}
         >
-          <option disabled={true} value={-1}>
+          <option disabled={true} value="">
             {props.placeholder || "Select"}
           </option>
           {props.options &&

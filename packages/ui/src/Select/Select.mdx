@@ -14,20 +14,30 @@ import Container from "../docz/Container"
 <Playground>
   <div style={{ width: "50%" }}>
     <Container
-      initialState={-1}
+      initialState=""
       children={([state, setState]) => (
-        <Select
-          label="Email"
-          value={state}
-          onChange={e => setState(e.target.value)}
-          options={["somit", "cool", "yeah"]}
-        />
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+          }}
+        >
+          <Select
+            label="Email"
+            value={state}
+            required={true}
+            onChange={e => setState(e.target.value)}
+            options={["somit", "cool", "yeah"]}
+          />
+          <button type="submit" style={{ display: "none" }}>
+            submit
+          </button>
+        </form>
       )}
     />
   </div>
   <div style={{ width: "50%" }}>
     <Container
-      initialState={-1}
+      initialState=""
       children={([state, setState]) => (
         <Select
           label="Email with error"
