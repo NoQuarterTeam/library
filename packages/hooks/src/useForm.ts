@@ -13,7 +13,7 @@ type LoadingAction = {
 
 type ValidationErrorAction = {
   type: "validationError"
-  fieldErrors: AnyKey
+  fieldErrors: { [key: string]: string[] }
 }
 
 type ErrorAction = {
