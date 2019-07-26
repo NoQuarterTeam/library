@@ -13,7 +13,7 @@ export interface SelectProps
   onChange?: (value: string) => void
   label?: string
   error?: any
-  options: Array<{ label: string; value: string } | string>
+  options?: Array<{ label: string; value: string } | string> | null
   style?: any
   labelStyle?: any
 }
