@@ -1,8 +1,15 @@
 import React, { InputHTMLAttributes, forwardRef, Ref, ChangeEvent } from "react"
 import { styled, darken } from "../Theme"
 
+type Omit<T, K extends string | number | symbol> = {
+  [P in Exclude<keyof T, K>]: T[P]
+}
+
 export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "onChange" | "value" | "style" | "prefix"
+  > {
   error?: boolean
   label?: string
   style?: any
@@ -13,7 +20,7 @@ export interface InputProps
 
 export const Input = forwardRef(
   (
-    { label, prefix = "", type, ...props }: InputProps,
+    { label, prefix = "", ...props }: InputProps,
     ref: Ref<HTMLInputElement>,
   ) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

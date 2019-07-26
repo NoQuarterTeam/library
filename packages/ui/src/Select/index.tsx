@@ -2,8 +2,15 @@ import React, { InputHTMLAttributes, ChangeEvent } from "react"
 import { styled, darken } from "../Theme"
 import Arrow from "./Arrow"
 
+type Omit<T, K extends string | number | symbol> = {
+  [P in Exclude<keyof T, K>]: T[P]
+}
+
 export interface SelectProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "onChange" | "value" | "style"
+  > {
   value?: string | string[] | null | undefined
   onChange?: (value: string) => void
   label?: string
