@@ -1,9 +1,7 @@
 import React, { InputHTMLAttributes, forwardRef, Ref, ChangeEvent } from "react"
 import { styled, darken } from "../Theme"
 
-type Omit<T, K extends string | number | symbol> = {
-  [P in Exclude<keyof T, K>]: T[P]
-}
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 export interface InputProps
   extends Omit<
@@ -16,6 +14,7 @@ export interface InputProps
   prefix?: string
   onChange?: (value: string) => void
   value?: number | string | string[] | null | undefined
+  id?: string
 }
 
 export const Input = forwardRef(

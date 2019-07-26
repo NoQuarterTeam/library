@@ -2,9 +2,7 @@ import React, { InputHTMLAttributes, ChangeEvent } from "react"
 import { styled, darken } from "../Theme"
 import Arrow from "./Arrow"
 
-type Omit<T, K extends string | number | symbol> = {
-  [P in Exclude<keyof T, K>]: T[P]
-}
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 export interface SelectProps
   extends Omit<
