@@ -4,7 +4,7 @@ import { capitalize } from "../utils"
 import { styled, css, ThemeInterface, transparentize, lighten } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
-export type Color = "primary" | "secondary" | "tertiary"
+export type Color = any
 export type Size = "small" | "large"
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
