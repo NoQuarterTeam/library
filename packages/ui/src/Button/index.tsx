@@ -137,8 +137,6 @@ const StyledButton = styled.button<ButtonProps>`
   text-align: center;
   color: white;
   letter-spacing: 1px;
-  line-height: 20px;
-  padding: ${p => p.theme.paddingS};
   transition: 200ms all;
   width: ${p => (!p.full ? "auto" : "100%")};
   font-size: ${p => p.theme.textM};
