@@ -2,7 +2,7 @@ import React, { InputHTMLAttributes } from "react"
 import { styled, darken } from "../Theme"
 import Arrow from "./Arrow"
 
-interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string | number
   onChange: (e: any) => void
   label?: string

@@ -1,7 +1,7 @@
 import React from "react"
 import { styled, transparentize } from "../Theme"
 
-interface SwitchProps {
+export interface SwitchProps {
   onChange: () => void
   on: boolean
 }

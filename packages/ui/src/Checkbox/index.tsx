@@ -1,7 +1,7 @@
 import React from "react"
 import { styled, transparentize } from "../Theme"
 
-interface CheckboxProps {
+export interface CheckboxProps {
   value?: boolean
   onChange?: (e: any) => void
   id?: string

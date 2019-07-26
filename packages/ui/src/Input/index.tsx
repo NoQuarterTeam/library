@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, forwardRef, Ref } from "react"
 import { styled, darken } from "../Theme"
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean
   label?: string
   style?: any

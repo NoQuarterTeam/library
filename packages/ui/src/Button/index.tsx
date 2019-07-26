@@ -7,7 +7,7 @@ export type Variant = "block" | "outline" | "text"
 export type Color = "primary" | "secondary" | "tertiary"
 export type Size = "small" | "large"
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant
   color?: Color
   loading?: boolean
