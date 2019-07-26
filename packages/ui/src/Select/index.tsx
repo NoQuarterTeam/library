@@ -1,10 +1,11 @@
-import React, { InputHTMLAttributes } from "react"
+import React, { InputHTMLAttributes, ChangeEvent } from "react"
 import { styled, darken } from "../Theme"
 import Arrow from "./Arrow"
 
-export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
-  value: string | number
-  onChange: (e: any) => void
+export interface SelectProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> {
+  value?: string | string[] | null | undefined
+  onChange?: (value: string) => void
   label?: string
   error?: any
   options: Array<{ label: string; value: string } | string>
@@ -13,6 +14,10 @@ export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function Select(props: SelectProps) {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value
+    props.onChange && props.onChange(value)
+  }
   return (
     <StyledContainer>
       {props.label && (
@@ -26,10 +31,10 @@ export function Select(props: SelectProps) {
           id={props.id}
           required={props.required}
           disabled={props.disabled}
-          value={props.value}
+          value={props.value || ""}
           hasError={!!props.error}
           isEmpty={props.value === ""}
-          onChange={props.onChange}
+          onChange={handleChange}
         >
           <option disabled={true} value="">
             {props.placeholder || "Select"}

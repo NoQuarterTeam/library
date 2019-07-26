@@ -1,18 +1,25 @@
-import React, { InputHTMLAttributes, forwardRef, Ref } from "react"
+import React, { InputHTMLAttributes, forwardRef, Ref, ChangeEvent } from "react"
 import { styled, darken } from "../Theme"
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> {
   error?: boolean
   label?: string
   style?: any
   prefix?: string
+  onChange?: (value: string) => void
+  value: string | string[] | null | undefined
 }
 
 export const Input = forwardRef(
   (
-    { label, prefix = "", ...props }: InputProps,
+    { label, prefix = "", type, ...props }: InputProps,
     ref: Ref<HTMLInputElement>,
   ) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value
+      props.onChange && props.onChange(value)
+    }
     return (
       <StyledContainer>
         {label && <StyledLabel htmlFor={props.id}>{label}</StyledLabel>}
@@ -20,6 +27,8 @@ export const Input = forwardRef(
           {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
           <StyledInput
             {...props}
+            onChange={handleChange}
+            value={props.value || ""}
             hasError={props.error}
             ref={ref}
             hasPrefix={!!prefix}
