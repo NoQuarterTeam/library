@@ -15,7 +15,7 @@ export interface InputProps
   style?: any
   prefix?: string
   onChange?: (value: string) => void
-  value: string | string[] | null | undefined
+  value?: number | string | string[] | null | undefined
 }
 
 export const Input = forwardRef(

@@ -11,7 +11,7 @@ export interface SelectProps
     InputHTMLAttributes<HTMLInputElement>,
     "onChange" | "value" | "style"
   > {
-  value?: string | string[] | null | undefined
+  value?: number | string | string[] | null | undefined
   onChange?: (value: string) => void
   label?: string
   error?: any
