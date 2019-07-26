@@ -26,7 +26,7 @@ type ResetAction = {
   values: AnyKey
 }
 
-type Action =
+export type FormAction =
   | UpdateAction
   | LoadingAction
   | ValidationErrorAction
@@ -48,7 +48,7 @@ interface FormState<T> {
   fieldErrors: { [key: string]: any }
 }
 
-function formReducer(state: any, action: Action) {
+function formReducer(state: any, action: FormAction) {
   switch (action.type) {
     case "update":
       return {
@@ -80,6 +80,6 @@ function formReducer(state: any, action: Action) {
   }
 }
 
-export function useForm<T>(values: T): [FormState<T>, Dispatch<Action>] {
+export function useForm<T>(values: T): [FormState<T>, Dispatch<FormAction>] {
   return useReducer(formReducer, { ...initialState, values })
 }

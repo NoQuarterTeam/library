@@ -140,13 +140,12 @@ const StyledButton = styled.button<ButtonProps>`
   transition: 200ms all;
   font-size: ${p => p.theme.textM};
   cursor: ${p => (p.disabled ? "default" : "pointer")};
-  width: 100%;
   border-radius: ${p => p.theme.borderRadius};
   ${p => p.theme.flexCenter};
   padding: ${p =>
     p.size === "large"
       ? `${p.theme.paddingM} ${p.theme.paddingXL}`
-      : `${p.theme.paddingS} ${p.theme.paddingL}`};
+      : `${p.theme.paddingS} ${p.theme.paddingM}`};
 
   ${p => getVariantStyles({ ...p, ...p.theme })}
 `
