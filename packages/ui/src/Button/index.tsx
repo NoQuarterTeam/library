@@ -27,12 +27,14 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <StyledContainer full={props.full}>
+    <StyledContainer>
       <StyledButton
+        full={props.full}
         variant={variant}
         color={color}
         type={type}
         size={size}
+        style={props.style}
         disabled={loading || disabled}
         {...props}
       >
@@ -42,9 +44,9 @@ export function Button({
   )
 }
 
-const StyledContainer = styled.div<{ full?: boolean }>`
+const StyledContainer = styled.div`
+  width: auto;
   padding: ${p => p.theme.paddingS};
-  width: ${p => (!p.full ? "auto" : "100%")};
 `
 
 const blockStyles = ({
@@ -138,6 +140,7 @@ const StyledButton = styled.button<ButtonProps>`
   line-height: 20px;
   padding: ${p => p.theme.paddingS};
   transition: 200ms all;
+  width: ${p => (!p.full ? "auto" : "100%")};
   font-size: ${p => p.theme.textM};
   cursor: ${p => (p.disabled ? "default" : "pointer")};
   border-radius: ${p => p.theme.borderRadius};

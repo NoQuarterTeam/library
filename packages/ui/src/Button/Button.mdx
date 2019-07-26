@@ -15,14 +15,16 @@ import { Button } from "./"
 ## Basic usage
 
 <Playground>
-  <Button onClick={() => alert("Hello")}>Primary block</Button>
-  <Button color="secondary" onClick={() => alert("Hello")}>
-    Secondary block
-  </Button>
-
-<Button color="tertiary" variant="outline" onClick={() => alert("Hello")}>
-  Tertiary outline
-</Button>
+  <Button full={true} onClick={() => alert("Hello")}>Primary block</Button>
+  <div style={{display: "flex"}}>
+    <Button color="secondary" onClick={() => alert("Hello")}>
+      Secondary block
+    </Button>
+  
+    <Button color="tertiary" variant="outline" onClick={() => alert("Hello")}>
+      Tertiary outline
+    </Button>
+  </div>
 
   <Button variant="outline" onClick={() => alert("Hello")}>Primary outline</Button>
   <Button variant="text" onClick={() => alert("Hello")}>Primary text</Button>
@@ -37,7 +39,7 @@ import { Button } from "./"
     Secondary block
   </Button>
 
-  <Button disabled={true} variant="outline" onClick={() => alert("Hello")}>Primary outline</Button>
+  <Button disabled={true} full={true} variant="outline" onClick={() => alert("Hello")}>Primary outline</Button>
   <Button disabled={true} variant="text" onClick={() => alert("Hello")}>Primary text</Button>
   <Button disabled={true} color="tertiary" variant="text" onClick={() => alert("Hello")}>Primary text</Button>
 
