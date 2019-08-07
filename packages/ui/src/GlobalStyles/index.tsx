@@ -1,6 +1,6 @@
 import React from "react"
 import { FlattenSimpleInterpolation } from "styled-components"
-import { useOutlineControl } from "@noquarter/hooks"
+import { useOutlineControl } from "../../../hooks"
 import { createGlobalStyle } from "../Theme"
 import body from "./styles/body"
 import overides from "./styles/overides"
