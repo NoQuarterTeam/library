@@ -1,4 +1,5 @@
 import { useState } from "react"
+const isBrowser = typeof window !== "undefined"
 
 export function useLocalStorage<T>(
   key: string,
@@ -6,10 +7,9 @@ export function useLocalStorage<T>(
 ): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState(() => {
     try {
-      const item = window.localStorage.getItem(key)
+      const item = isBrowser && window.localStorage.getItem(key)
       return item ? JSON.parse(item) : initialValue
     } catch (error) {
-      console.log(error)
       return initialValue
     }
   })
@@ -19,10 +19,9 @@ export function useLocalStorage<T>(
       const valueToStore =
         value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
-      window.localStorage.setItem(key, JSON.stringify(valueToStore))
-    } catch (error) {
-      console.log(error)
-    }
+      isBrowser &&
+        window.localStorage.setItem(key, JSON.stringify(valueToStore))
+    } catch (error) {}
   }
 
   return [storedValue, setValue]
