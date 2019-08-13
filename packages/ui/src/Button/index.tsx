@@ -27,7 +27,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <StyledContainer>
+    <StyledContainer full={props.full}>
       <StyledButton
         full={props.full}
         variant={variant}
@@ -44,8 +44,8 @@ export function Button({
   )
 }
 
-const StyledContainer = styled.div`
-  width: inherit;
+const StyledContainer = styled.div<{ full?: boolean }>`
+  width: ${p => (!p.full ? "auto" : "100%")};
   padding: ${p => p.theme.paddingS};
 `
 
