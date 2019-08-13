@@ -45,6 +45,7 @@ export function Button({
 }
 
 const StyledContainer = styled.div`
+  width: inherit;
   padding: ${p => p.theme.paddingS};
 `
 
