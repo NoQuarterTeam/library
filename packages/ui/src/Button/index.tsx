@@ -45,7 +45,6 @@ export function Button({
 }
 
 const StyledContainer = styled.div`
-  width: auto;
   padding: ${p => p.theme.paddingS};
 `
 
