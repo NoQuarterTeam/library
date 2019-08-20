@@ -73,7 +73,7 @@ const StyledInput = styled.input<{ hasPrefix?: boolean; hasError?: boolean }>`
   background-color: ${p => p.theme.colorBackground};
 
   &::placeholder {
-    color: ${p => p.theme.colorTertiary};
+    color: ${p => p.theme.colorLabel};
   }
 
   &:focus {

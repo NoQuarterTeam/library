@@ -12,8 +12,8 @@ function Arrow(props: any) {
 export default Arrow
 
 const StyledArrow = styled.svg`
-  fill: ${p => p.theme.colorTertiary};
-  stroke: ${p => p.theme.colorTertiary};
+  fill: ${p => p.theme.colorLabel};
+  stroke: ${p => p.theme.colorLabel};
   stroke-width: 2px;
   width: 12px;
 `

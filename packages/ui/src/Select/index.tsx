@@ -93,7 +93,7 @@ const StyledSelect = styled.select<{ isEmpty: boolean; hasError: boolean }>`
   outline: 0;
   border-radius: 0;
   appearance: none;
-  color: ${p => (p.isEmpty ? p.theme.colorTertiary : p.theme.colorText)};
+  color: ${p => (p.isEmpty ? p.theme.colorLabel : p.theme.colorText)};
   cursor: ${p => (p.disabled ? "default" : "pointer")};
   font-size: ${p => p.theme.textM};
   border-radius: ${p => p.theme.borderRadius};
@@ -104,10 +104,10 @@ const StyledSelect = styled.select<{ isEmpty: boolean; hasError: boolean }>`
   background-color: ${p => p.theme.colorBackground};
 
   &:disabled {
-    color: ${p => p.theme.colorTertiary};
+    color: ${p => p.theme.colorLabel};
   }
   &::placeholder {
-    color: ${p => p.theme.colorTertiary};
+    color: ${p => p.theme.colorLabel};
   }
   &:focus {
     border: 2px solid
