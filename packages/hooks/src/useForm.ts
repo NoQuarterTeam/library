@@ -2,26 +2,26 @@ import { useReducer, Dispatch } from "react"
 
 type AnyKey = { [key: string]: any }
 
-type UpdateAction = {
+export type UpdateAction = {
   type: "update"
   field: AnyKey
 }
 
-type LoadingAction = {
+export type LoadingAction = {
   type: "loading"
 }
 
-type ValidationErrorAction = {
+export type ValidationErrorAction = {
   type: "validationError"
   fieldErrors: { [key: string]: string[] }
 }
 
-type ErrorAction = {
+export type ErrorAction = {
   type: "error"
   error: string
 }
 
-type ResetAction = {
+export type ResetAction = {
   type: "reset"
   values: AnyKey
 }
@@ -40,7 +40,7 @@ const initialState = {
   fieldErrors: {},
 }
 
-interface FormState<T> {
+export interface FormState<T> {
   values: T
   loading: boolean
   error: string
