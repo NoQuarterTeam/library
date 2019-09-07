@@ -23,7 +23,7 @@ export type ErrorAction = {
 
 export type ResetAction = {
   type: "reset"
-  values: AnyKey
+  values?: AnyKey
 }
 
 export type FormAction =
@@ -75,7 +75,7 @@ function formReducer(state: any, action: FormAction) {
     case "reset":
       return {
         ...initialState,
-        values: action.values,
+        values: action.values || state.values,
       }
   }
 }
