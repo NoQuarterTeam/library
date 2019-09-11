@@ -38,7 +38,7 @@ export function Select(props: SelectProps) {
           disabled={props.disabled}
           value={props.value || ""}
           hasError={!!props.error}
-          isEmpty={props.value === ""}
+          isEmpty={!!!props.value}
           onChange={handleChange}
         >
           <option disabled={true} value="">
