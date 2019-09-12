@@ -29,7 +29,7 @@ export const font: Font = {
   weight: {
     thin: 200,
     normal: 400,
-    semiBold: 500,
+    semiBold: 600,
     bold: 700,
     extraBold: 900,
   },
