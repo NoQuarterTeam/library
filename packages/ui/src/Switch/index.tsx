@@ -36,11 +36,12 @@ const StyledSwitch = styled.button<{ on: boolean }>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${p => (p.on ? p.theme.colorPrimary : p.theme.colorLabel)};
+  background-color: ${p =>
+    p.on ? p.theme.colors.primary : p.theme.colors.gray[400]};
 
   &:hover,
   &:focus {
-    box-shadow: 0 0 5px 0 ${p => transparentize(0.3, p.theme.colorLabel)};
+    box-shadow: 0 0 5px 0 ${p => transparentize(0.3, p.theme.colors.gray[400])};
   }
 `
 

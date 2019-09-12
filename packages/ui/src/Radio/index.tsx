@@ -32,7 +32,7 @@ const StyledLabel = styled.label`
 
   ${HiddenInput} {
     &:focus ~ div {
-      border: 2px solid ${p => p.theme.colorPrimary};
+      border: 2px solid ${p => p.theme.colors.primary};
     }
   }
 `
@@ -41,11 +41,11 @@ const StyledRadio = styled.div`
   height: 26px;
   width: 26px;
   border-radius: 50%;
-  border: 2px solid ${p => lighten(0.25, p.theme.colorPrimary)};
-  ${p => p.theme.flexCenter};
+  border: 2px solid ${p => lighten(0.25, p.theme.colors.primary)};
+  ${p => p.theme.helpers.flex.center};
 
   &:hover {
-    border: 2px solid ${p => p.theme.colorPrimary};
+    border: 2px solid ${p => p.theme.colors.primary};
   }
 
   &::after {
@@ -57,7 +57,7 @@ const StyledRadio = styled.div`
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    box-shadow: 0 0 5px 0 ${p => transparentize(0.5, p.theme.colorPrimary)};
-    background-color: ${p => p.theme.colorPrimary};
+    box-shadow: 0 0 5px 0 ${p => transparentize(0.5, p.theme.colors.primary)};
+    background-color: ${p => p.theme.colors.primary};
   }
 `

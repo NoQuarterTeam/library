@@ -7,12 +7,18 @@ export interface CheckboxProps {
   id?: string
   label?: string
   style?: any
+  labelStyle?: any
+  containerStyle?: any
 }
 
 export function Checkbox({ label, value, ...props }: CheckboxProps) {
   return (
-    <StyledContainer>
-      {label && <StyledLabel htmlFor={props.id}>{label}</StyledLabel>}
+    <StyledContainer style={props.containerStyle}>
+      {label && (
+        <StyledLabel htmlFor={props.id} style={props.labelStyle}>
+          {label}
+        </StyledLabel>
+      )}
       <StyledWrap htmlFor={props.id}>
         <StyledInput
           id={props.id}
@@ -33,12 +39,12 @@ export function Checkbox({ label, value, ...props }: CheckboxProps) {
 const StyledContainer = styled.div`
   position: relative;
   width: 100%;
-  padding: ${p => p.theme.paddingS};
+  padding: ${p => p.theme.space.sm};
 `
 
 const StyledLabel = styled.label`
-  color: ${p => p.theme.colorLabel};
-  font-size: ${p => p.theme.textS};
+  color: ${p => p.theme.colors.gray[400]};
+  font-size: ${p => p.theme.font.size.sm};
 `
 
 const StyledInput = styled.input`
@@ -64,22 +70,22 @@ const StyledCheckbox = styled.span`
   width: 20px;
   cursor: pointer;
   transition: 100ms all;
-  border-radius: 3px;
-  border: 2px solid ${p => p.theme.colorPrimary};
-  ${p => p.theme.flexCenter};
+  border-radius: ${p => p.theme.radii.sm};
+  border: 2px solid ${p => p.theme.colors.primary};
+  ${p => p.theme.helpers.flex.center};
 
   &:hover {
-    box-shadow: 0 0 5px 0 ${p => transparentize(0.5, p.theme.colorPrimary)};
+    box-shadow: 0 0 5px 0 ${p => transparentize(0.5, p.theme.colors.primary)};
   }
 `
 const StyledWrap = styled.label`
   position: relative;
   display: flex;
-  padding: ${p => p.theme.paddingM};
+  padding: ${p => p.theme.space.md};
 
   ${StyledInput} {
     &:checked ~ span {
-      background-color: ${p => p.theme.colorPrimary};
+      background-color: ${p => p.theme.colors.primary};
       ${Icon} {
         visibility: visible;
       }
@@ -87,7 +93,7 @@ const StyledWrap = styled.label`
   }
   ${StyledInput} {
     &:focus ~ span {
-      box-shadow: 0 0 5px 0 ${p => transparentize(0.5, p.theme.colorPrimary)};
+      box-shadow: 0 0 5px 0 ${p => transparentize(0.5, p.theme.colors.primary)};
     }
   }
 `

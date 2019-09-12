@@ -1,28 +1,29 @@
 ---
-name: Input
-route: /input
+name: TextArea
+route: /TextArea
 ---
 
 import { Playground, Props } from "docz"
-import { Input } from "./"
+import { TextArea } from "./"
 import Container from "../docz/Container"
 
-# Input
+# TextArea
 
 ## Basic usage
 
 <Playground>
   <div style={{ width: "50%" }}>
-    <Container intialState="">
+    <Container initialState="">
       {([value, setValue]) => (
-        <Input
+        <TextArea
           label="Email"
+          placeholder="heyyy"
           value={value}
           onChange={setValue}
-          placeholder="jimbob@gmail.com"
+          rows={4}
         />
       )}
     </Container>
-    <Input error={true} label="Email" placeholder="jimbob@gmail.com" />
+    <TextArea error={true} label="Email" />
   </div>
 </Playground>

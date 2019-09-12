@@ -1,10 +1,9 @@
 import React, { ButtonHTMLAttributes } from "react"
-import { capitalize } from "../utils"
 
-import { styled, css, ThemeInterface, transparentize, lighten } from "../Theme"
+import { styled, css, ThemeInterface, lighten, transparentize } from "../Theme"
 
 export type Variant = "block" | "outline" | "text"
-export type Color = any
+export type Color = string
 export type Size = "small" | "large"
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,6 +14,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size
   full?: boolean
   style?: any
+  containerStyle?: any
 }
 
 export function Button({
@@ -24,14 +24,23 @@ export function Button({
   size = "large",
   loading = false,
   disabled = false,
+  containerStyle,
   ...props
 }: ButtonProps) {
+  let actualColor = color
+  let colorScale
+  if (actualColor.includes(".")) {
+    actualColor = color.split(".")[0]
+    colorScale = parseInt(color.split(".")[1])
+  }
+
   return (
-    <StyledContainer full={props.full}>
+    <StyledContainer full={props.full} style={containerStyle}>
       <StyledButton
         full={props.full}
         variant={variant}
-        color={color}
+        color={actualColor}
+        colorScale={colorScale}
         type={type}
         size={size}
         style={props.style}
@@ -46,81 +55,69 @@ export function Button({
 
 const StyledContainer = styled.div<{ full?: boolean }>`
   width: ${p => (!p.full ? "auto" : "100%")};
-  padding: ${p => p.theme.paddingS};
+  padding: ${p => p.theme.space.sm};
 `
 
-const blockStyles = ({
-  color = "primary",
-  ...props
-}: ThemeInterface & ButtonProps) => css`
-  border: 2px solid
-    ${p =>
-      props.disabled
-        ? lighten(0.08, p.theme["color" + capitalize(color)])
-        : p.theme["color" + capitalize(color)]};
+type ColorProps = { colorScale?: number; color: string }
 
-  background-color: ${p =>
-    props.disabled
-      ? lighten(0.08, p.theme["color" + capitalize(color)])
-      : p.theme["color" + capitalize(color)]};
+type StyleProps = ThemeInterface & ButtonProps & ColorProps
 
-  &:hover {
-    border: 2px solid
-      ${p => lighten(0.08, p.theme["color" + capitalize(color)])};
-    background-color: ${p =>
-      lighten(0.08, p.theme["color" + capitalize(color)])};
-  }
-`
+const blockStyles = (props: StyleProps) => {
+  // @ts-ignore
+  const color: string = props.colorScale
+    ? props.colors[props.color][props.colorScale]
+    : props.colors[props.color]
 
-const outlineStyled = ({
-  color = "primary",
-  ...props
-}: ThemeInterface & ButtonProps) => css`
-  background-color: transparent;
-  border: 2px solid
-    ${p =>
-      props.disabled
-        ? lighten(0.08, p.theme["color" + capitalize(color)])
-        : p.theme["color" + capitalize(color)]};
+  return css`
+    border: 2px solid ${props.disabled ? lighten(0.08, color) : color};
+    background-color: ${props.disabled ? lighten(0.08, color) : color};
 
-  color: ${p =>
-    props.disabled
-      ? lighten(0.08, p.theme["color" + capitalize(color)])
-      : p.theme["color" + capitalize(color)]};
-  ${props.disabled && "opacity: 0.9"};
-  &:hover {
-    background-color: ${p =>
-      props.disabled
-        ? "transparent "
-        : transparentize(0.9, p.theme["color" + capitalize(color)])};
-  }
-`
+    &:hover {
+      border: 2px solid ${lighten(0.08, color)};
+      background-color: ${lighten(0.08, color)};
+    }
+  `
+}
 
-const textStyles = ({
-  color = "primary",
-  ...props
-}: ThemeInterface & ButtonProps) => css`
-  background-color: transparent;
-  border: 2px solid transparent;
-  color: ${p =>
-    props.disabled
-      ? lighten(0.08, p.theme["color" + capitalize(color)])
-      : p.theme["color" + capitalize(color)]};
+const outlineStyled = (props: StyleProps) => {
+  // @ts-ignore
+  const color: string = props.colorScale
+    ? props.colors[props.color][props.colorScale]
+    : props.colors[props.color]
 
-  &:hover {
-    ${p =>
-      !props.disabled &&
-      `background-color: ${transparentize(
-        0.9,
-        p.theme["color" + capitalize(color)],
-      )}`};
-  }
-`
+  return css`
+    background-color: ${props.colors.transparent};
+    border: 2px solid ${props.disabled ? lighten(0.08, color) : color};
+    color: ${props.disabled ? lighten(0.08, color) : color};
 
-const getVariantStyles = ({
-  variant = "block",
-  ...props
-}: ThemeInterface & ButtonProps) => {
+    ${props.disabled && "opacity: 0.9"};
+
+    &:hover {
+      background-color: ${props.disabled
+        ? props.colors.transparent
+        : transparentize(0.9, color)};
+    }
+  `
+}
+
+const textStyles = (props: StyleProps) => {
+  // @ts-ignore
+  const color: string = props.colorScale
+    ? props.colors[props.color][props.colorScale]
+    : props.colors[props.color]
+
+  return css`
+    background-color: ${props.colors.transparent};
+    border: 2px solid ${props.colors.transparent};
+    color: ${props.disabled ? lighten(0.08, color) : color};
+
+    &:hover {
+      ${!props.disabled && `background-color: ${transparentize(0.9, color)}`};
+    }
+  `
+}
+
+const getVariantStyles = ({ variant = "block", ...props }: StyleProps) => {
   switch (variant) {
     case "block":
       return blockStyles({ variant, ...props })
@@ -133,20 +130,20 @@ const getVariantStyles = ({
   }
 }
 
-const StyledButton = styled.button<ButtonProps>`
+const StyledButton = styled.button<ButtonProps & ColorProps>`
   text-align: center;
-  color: white;
-  letter-spacing: 1px;
+  letter-spacing: ${p => p.theme.font.letterSpacing.md};
   transition: 200ms all;
   width: ${p => (!p.full ? "auto" : "100%")};
-  font-size: ${p => p.theme.textM};
+  color: ${p => p.theme.colors.white};
+  font-size: ${p => p.theme.font.size.md};
   cursor: ${p => (p.disabled ? "default" : "pointer")};
-  border-radius: ${p => p.theme.borderRadius};
-  ${p => p.theme.flexCenter};
+  border-radius: ${p => p.theme.radii.md};
+  ${p => p.theme.helpers.flex.center};
   padding: ${p =>
     p.size === "large"
-      ? `${p.theme.paddingM} ${p.theme.paddingXL}`
-      : `${p.theme.paddingS} ${p.theme.paddingM}`};
+      ? `${p.theme.space.md} ${p.theme.space.xl}`
+      : `${p.theme.space.sm} ${p.theme.space.md}`};
 
   ${p => getVariantStyles({ ...p, ...p.theme })}
 `

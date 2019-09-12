@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, forwardRef, Ref, ChangeEvent } from "react"
-import { styled, darken } from "../Theme"
+import { styled } from "../Theme"
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
@@ -15,6 +15,8 @@ export interface InputProps
   onChange?: (value: string) => void
   value?: number | string | string[] | null | undefined
   id?: string
+  labelStyle?: any
+  containerStyle?: any
 }
 
 export const Input = forwardRef(
@@ -27,8 +29,12 @@ export const Input = forwardRef(
       props.onChange && props.onChange(value)
     }
     return (
-      <StyledContainer>
-        {label && <StyledLabel htmlFor={props.id}>{label}</StyledLabel>}
+      <StyledContainer style={props.containerStyle}>
+        {label && (
+          <StyledLabel htmlFor={props.id} style={props.labelStyle}>
+            {label}
+          </StyledLabel>
+        )}
         <div style={{ position: "relative" }}>
           {prefix && <StyledPrefix>{prefix}</StyledPrefix>}
           <StyledInput
@@ -47,12 +53,12 @@ export const Input = forwardRef(
 
 const StyledContainer = styled.div`
   width: 100%;
-  padding: ${p => p.theme.paddingS};
+  padding: ${p => p.theme.space.sm};
 `
 
 const StyledLabel = styled.label`
-  color: ${p => p.theme.colorLabel};
-  font-size: ${p => p.theme.textS};
+  color: ${p => p.theme.colors.gray[400]};
+  font-size: ${p => p.theme.font.size.sm};
 `
 
 const StyledInput = styled.input<{ hasPrefix?: boolean; hasError?: boolean }>`
@@ -62,32 +68,29 @@ const StyledInput = styled.input<{ hasPrefix?: boolean; hasError?: boolean }>`
   background-color: transparent;
   transition: all 200ms;
   appearance: none;
-  border-radius: ${p => p.theme.borderRadius};
-  color: ${p => p.theme.colorText};
-  font-size: ${p => p.theme.textM};
-  padding: ${p => p.theme.paddingM};
-  ${p => p.hasPrefix && "padding-left: 16px"};
+  border-radius: ${p => p.theme.radii.md};
+  color: ${p => p.theme.colors.text};
+  font-size: ${p => p.theme.font.size.md};
+  padding: ${p => p.theme.space.md};
+  ${p => p.hasPrefix && "padding-left: 32px"};
   ${p => p.type === "date" && "padding-bottom: 7px"};
   border: 2px solid
-    ${p => (p.hasError ? p.theme.colorWarning : p.theme.colorBackground)};
-  background-color: ${p => p.theme.colorBackground};
+    ${p => (p.hasError ? p.theme.colors.warning : p.theme.colors.gray[50])};
+  background-color: ${p => p.theme.colors.gray[50]};
 
   &::placeholder {
-    color: ${p => p.theme.colorLabel};
+    color: ${p => p.theme.colors.gray[400]};
   }
 
   &:focus {
     border: 2px solid
-      ${p =>
-        p.hasError
-          ? p.theme.colorWarning
-          : darken(0.1, p.theme.colorBackground)};
+      ${p => (p.hasError ? p.theme.colors.warning : p.theme.colors.gray[300])};
   }
 `
 
 const StyledPrefix = styled.span`
   position: absolute;
-  left: 0;
-  top: 11px;
-  color: ${p => p.theme.colorLabel};
+  left: 17px;
+  top: 9px;
+  color: ${p => p.theme.colors.gray[400]};
 `
