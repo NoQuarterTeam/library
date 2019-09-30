@@ -32,7 +32,7 @@
     "@types/react": "16.9.3",
     "@types/react-dom": "16.9.1",
     "eslint": "6.4.0",
-    "lint-staged": "9.2.5",
+    "lint-staged": "9.4.0",
     "prettier": "1.18.2"
   }
 }

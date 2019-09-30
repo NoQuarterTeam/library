@@ -27,7 +27,7 @@
   "gitHead": "48e0a2830c2269e5843febed8fbbfc854251178a",
   "devDependencies": {
     "eslint": "6.4.0",
-    "lint-staged": "9.3.0",
+    "lint-staged": "9.4.0",
     "prettier": "1.18.2"
   }
 }
