@@ -63,7 +63,6 @@ type ColorProps = { colorScale?: number; color: string }
 type StyleProps = ThemeInterface & ButtonProps & ColorProps
 
 const blockStyles = (props: StyleProps) => {
-  // @ts-ignore
   const color: string = props.colorScale
     ? props.colors[props.color][props.colorScale]
     : props.colors[props.color]
@@ -80,7 +79,6 @@ const blockStyles = (props: StyleProps) => {
 }
 
 const outlineStyled = (props: StyleProps) => {
-  // @ts-ignore
   const color: string = props.colorScale
     ? props.colors[props.color][props.colorScale]
     : props.colors[props.color]
@@ -101,7 +99,6 @@ const outlineStyled = (props: StyleProps) => {
 }
 
 const textStyles = (props: StyleProps) => {
-  // @ts-ignore
   const color: string = props.colorScale
     ? props.colors[props.color][props.colorScale]
     : props.colors[props.color]

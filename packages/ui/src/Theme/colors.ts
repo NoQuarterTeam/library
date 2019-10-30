@@ -13,6 +13,7 @@ export interface ColorScale {
 }
 
 export interface Colors {
+  [key: string]: string
   transparent: string
   background: string
   primary: string
