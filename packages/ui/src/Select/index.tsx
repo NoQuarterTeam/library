@@ -13,7 +13,9 @@ export interface SelectProps
   onChange?: (value: string) => void
   label?: string
   error?: any
-  options?: Array<{ label: string; value: string | number } | string> | null
+  options?: Array<
+    { label: string; value: string | number } | string | number
+  > | null
   style?: any
   containerStyle?: any
   labelStyle?: any
@@ -22,7 +24,9 @@ export interface SelectProps
 export function Select(props: SelectProps) {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
-    props.onChange && props.onChange(value)
+    if (props.onChange) {
+      props.onChange(value)
+    }
   }
   return (
     <StyledContainer style={props.containerStyle}>
@@ -47,16 +51,21 @@ export function Select(props: SelectProps) {
           </option>
           {props.options &&
             props.options.map(option => {
-              if (typeof option === "string") {
+              if (
+                typeof option !== "string" &&
+                typeof option !== "number" &&
+                option.value &&
+                option.label
+              ) {
                 return (
-                  <option key={option} value={option}>
-                    {option}
+                  <option key={option.value} value={option.value}>
+                    {option.label}
                   </option>
                 )
               } else {
                 return (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
+                  <option key={option.toString()} value={option.toString()}>
+                    {option}
                   </option>
                 )
               }
