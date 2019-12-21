@@ -31,7 +31,7 @@
   "devDependencies": {
     "@types/react": "16.9.17",
     "@types/react-dom": "16.9.4",
-    "eslint": "6.7.2",
+    "eslint": "6.8.0",
     "lint-staged": "9.5.0",
     "prettier": "1.19.1"
   }
