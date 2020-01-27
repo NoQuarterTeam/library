@@ -43,6 +43,6 @@
     "typescript": "3.7.5"
   },
   "dependencies": {
-    "eslint-plugin-mdx": "1.6.5"
+    "eslint-plugin-mdx": "1.6.8"
   }
 }
