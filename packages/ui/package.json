@@ -36,7 +36,7 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "polished": "^3.3.2",
+    "polished": "^4.0.0",
     "styled-components": "^5.0.0-beta.2"
   },
   "peerDependencies": {
